@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SadhaiSewa | Book Local Workers</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+    --primary:#6a11cb;
+    --secondary:#2575fc;
+    --accent:#ffb703;
+    --dark:#1b1b1b;
+    --glass:rgba(255,255,255,0.25);
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top left,#ff9a9e,transparent 40%),
+        radial-gradient(circle at bottom right,#a18cd1,transparent 40%),
+        linear-gradient(135deg,#6a11cb,#2575fc);
+    color:#fff;
+    overflow-x:hidden;
+}
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #525ac4;
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-left .logo {
+    height: 50px;
+}
+
+.nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+}
+
+.join-btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.join-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(95,44,255,0.3);
+}
+.header{min-height:85vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;}
+.hero-box{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(20px);
+    border-radius:40px;
+    padding:70px 50px;
+    max-width:900px;
+    box-shadow:0 40px 80px rgba(0,0,0,0.3);
+    animation:float 6s ease-in-out infinite;
+}
+.hero-box h1{
+    font-size:3.8rem;
+    background: linear-gradient(90deg, #ffdd00, #ff7b00, #ffdd00);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glowText 4s infinite linear;
+    letter-spacing: 2px;
+}
+@keyframes glowText {0% { background-position: 0%; } 100% { background-position: 300%; }}
+.hero-box p{margin-top:20px;font-size:1.3rem;}
+.category-panel{
+    max-width:1200px;
+    margin:-120px auto 80px;
+    padding:60px 40px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(25px);
+    border-radius:45px;
+    box-shadow:0 45px 90px rgba(0,0,0,0.35);
+}
+.category-title{text-align:center;font-size:2.3rem;margin-bottom:50px;}
+.category-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:35px;}
+.category{
+    background:linear-gradient(145deg,rgba(255,255,255,0.35),rgba(255,255,255,0.1));
+    border-radius:30px;
+    padding:45px 25px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.45s ease;
+}
+.category:hover{transform:translateY(-18px) scale(1.08);}
+.category span{font-size:52px;display:block;margin-bottom:18px;}
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+    justify-content:center;
+    padding:50px 20px;
+    overflow-y:auto;
+    z-index:1000;
+}
+.modal-content{
+    background:#fff;
+    color:#000;
+    border-radius:30px;
+    padding:40px;
+    max-width:950px;
+    width:100%;
+}
+.tech-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:30px;margin-top:30px;}
+.tech-card{
+    background:#f3f4ff;
+    border-radius:22px;
+    padding:20px;
+    text-align:center;
+    cursor:pointer;
+}
+.tech-card img{width:90px;height:90px;border-radius:50%;}
+.tech-detail{margin-top:30px;background:#eef0ff;padding:30px;border-radius:22px;}
+.booking-form{display:none;margin-top:30px;background:#fff;padding:30px;border-radius:22px;}
+.booking-form input,.booking-form textarea{width:100%;padding:12px;margin-bottom:15px;border-radius:14px;border:1px solid #ccc;}
+.booking-form button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(135deg,#ff006e,#ffb703);
+    color:#fff;
+    cursor:pointer;
+    font-size:1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: floatBtn 3s ease-in-out infinite;
+}
+.booking-form button:hover{
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #ffb703, 0 0 40px #ff006e;
+}
+@keyframes floatBtn {0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); }}
+.book-btn{display:inline-block;margin-top:18px;padding:12px 35px;background:linear-gradient(135deg,#6a11cb,#2575fc);color:#fff;border-radius:50px;}
+.footer{text-align:center;padding:50px 15px;}
+.team-section {
+    padding: 40px;
+    text-align: center;
+}
+
+.team-title {
+    margin-bottom: 25px;
+}
+
+.team-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-card {
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+.team-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.team-card h4 {
+    margin: 10px 0 5px;
+}
+
+.team-card p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+.team-card {
+
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+.team-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.team-card h4 {
+    margin: 10px 0 5px;
+}
+
+.team-card p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.slogan {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    height: 35px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slogan-text {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.slogan-text.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.contact-section{
+    height:50vh;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+	margin-block: 2%;
+    
+    
+}
+.contact-left{
+	margin-left: 2%;
+}
+
+.contact-left p{
+    margin-top: 3%;
+}
+.contact-left p i{
+    color: #291680;
+    margin-right: 15px;
+    font-size: 19px;
+}
+ .sub-title{
+    font-size: 35px;
+}
+.sub-title span{
+    color: #0ef;
+}
+
+form h1{
+    text-align: center;
+}
+.home-sci a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #0ef;
+    border-radius: 50%;
+    font-size: 20px;
+    /* color:#0ef ; */
+    text-decoration: none;
+    margin: 10px 5px 10px;
+    box-shadow: 0 0 20px #0ef;
+
+
+}
+
+.home-sci a:hover {
+    background-color: #0ef;
+    color: #081b29;
+}
+.contact-right h1{
+	text-align: center;
+	margin-left: 11%;
+	
+}
+.contact-right span{
+	color: #0ef;
+}
+
+.contact-right form{
+    width: 100%;
+	/* justify-content: right;
+	 */
+}
+.contact-right{
+	margin-right: 3%;
+}
+form input,form textarea{
+	justify-content: right;
+	display: flex;
+    width: 100%;
+    border: 0;
+    outline: none;
+    background: #a79eab;
+    padding: 15px;
+    color: #fff;
+    margin: 17px 28px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+/* ...................................................Button........................................................... */
+.btn.btn2 {
+	padding: 10px 28px;
+	border-radius: 9px;
+	background-color: #ff004f;
+	color: #0ef;
+	font-weight: 600;
+	margin: 50px 0;
+	text-decoration: none;
+  }
+  
+  .contact-right {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	
+  }
+</style>
+</head>
+
+<body>
+<!-- NAVIGATION BAR -->
+<nav class="navbar">
+    <div class="nav-left">
+        <img src="static\images\WhatsApp Image 2026-02-05 at 14.00.02.jpeg" alt="SadhaiSeva Logo" class="logo">
+    </div>
+    <div class="nav-center">
+        <!-- Link to Join Us page -->
+        <a href="{{ url_for('joinus') }}" class="join-btn">Join Us</a>
+        
+    </div>
+</nav>
+
+<section class="header">
+<div class="hero-box">
+<h1>SadhaiSewa</h1>
+<p class="slogan">
+    <span class="slogan-text active" style="color: rgb(127, 255, 138);">One Click • Easy Booking</span>
+    <span class="slogan-text " style="color: #1c1c1c;">Trusted Local Professionals</span>
+    <span class="slogan-text" style="color: red;">Fast • Reliable • Affordable</span>
+</p>
+</div>
+</section>
+
+<section class="category-panel">
+<h2 class="category-title">Choose a Service</h2>
+<div class="category-list">
+<div class="category" onclick="openCategory('Plumber')"><span>🚰</span><h4>Plumber</h4></div>
+<div class="category" onclick="openCategory('Electrician')"><span>💡</span><h4>Electrician</h4></div>
+<div class="category" onclick="openCategory('Teacher')"><span>📘</span><h4>Teacher</h4></div>
+<div class="category" onclick="openCategory('AC Mechanic')"><span>❄️</span><h4>AC Mechanic</h4></div>
+<div class="category" onclick="openCategory('Fan Mechanic')"><span>🌀</span><h4>Fan Mechanic</h4></div>
+<div class="category" onclick="openCategory('Fan Mechanic')"><span>🌀</span><h4>Labour</h4></div>
+<div class="category" onclick="openCategory('Others')"><span>🛠️</span><h4>Others</h4></div>
+</div>
+</section>
+<!-- TEAM -->
+<section class="team-section">
+    <h2 class="team-title">Developed By:</h2>
+    <div class="team-list">
+        <div class="team-card">
+            <img src="static\images\WhatsApp Image 2026-02-05 at 13.57.22 (1).jpeg">
+            <h4>Er.Aditya Sah</h4>
+            <p>Developer</p>
+        </div>
+        <div class="team-card">
+            <img src="static\images\WhatsApp Image 2026-02-05 at 20.03.31.jpeg">
+            <h4>Er.Abhishek Kr Giri</h4>
+            <p>Developer</p>
+        </div>
+         
+         
+    </div>
+</section>
+<section class="contact-section" id="Contact">
+		<div class="contact-left">
+			<h1 class="sub-title">Contact<span> Us</span> </h1>
+			<p><i class="fa-solid fa-paper-plane"></i> SadhaiSewa@gmail.com</p>
+			<p><i class="fa-solid fa-square-phone"></i>+977 9811809506</p>
+			<p><i class="fa-solid fa-square-phone"></i> +977 9811207418</p>
+			<br>
+			
+		</div>
+		<div class="contact-right">
+			<form >
+				<h1>Feed<span>back</span></h1>
+				<input type="text" name="name" placeholder="Your Name" required>
+				<input type="text" name="email" placeholder=" Your email" required>
+				<textarea name="message" rows="6" placeholder="Your Message"></textarea>
+				<button type="submit" class="btn btn2">Submit</button>
+			</form>
+
+		</div>
+
+	</section>
+
+<div class="footer">© 2026 SadhaiSewa: Made In Birgunj Nepal</div>
+
+<div class="modal" id="tech-modal">
+<div class="modal-content">
+<h2 id="modal-category"></h2>
+<div class="tech-list" id="modal-tech-list"></div>
+<div class="tech-detail" id="tech-detail"></div>
+
+<div class="booking-form" id="booking-form">
+<input placeholder="Your Name">
+<input placeholder="Contact Number">
+<textarea placeholder="Address"></textarea>
+<input placeholder="Preferred Time">
+<button onclick="submitBooking()">Confirm Booking</button>
+</div>
+
+<div class="book-btn" onclick="closeModal()">Close</div>
+</div>
+</div>
+
+<script>
+const technicians={
+"Plumber":[
+{name:"Ramesh Thapa",skills:"Pipe fixing",charge:500,contact:"9876543210",image:"https://randomuser.me/api/portraits/men/32.jpg"},
+{name:"Sita Sharma",skills:"Drain cleaning",charge:450,contact:"9812345670",image:"https://randomuser.me/api/portraits/women/44.jpg"},
+{name:"Mohan Yadav",skills:"Bathroom plumbing",charge:400,contact:"9801234567",image:"https://randomuser.me/api/portraits/men/12.jpg"},
+{name:"Geeta Karki",skills:"Leak repair",charge:350,contact:"9823456789",image:"https://randomuser.me/api/portraits/women/22.jpg"},
+{name:"Suresh Singh",skills:"Pipe replacement",charge:500,contact:"9834567890",image:"https://randomuser.me/api/portraits/men/55.jpg"}
+],
+"Electrician":[
+{name:"Ram Gautam",skills:"Wiring",charge:500,contact:"9876501234",image:"https://randomuser.me/api/portraits/men/34.jpg"},
+{name:"Suman Shrestha",skills:"Lighting",charge:450,contact:"9812203344",image:"https://randomuser.me/api/portraits/women/33.jpg"},
+{name:"Kiran Thapa",skills:"Appliance repair",charge:400,contact:"9803304455",image:"https://randomuser.me/api/portraits/men/14.jpg"},
+{name:"Anita Singh",skills:"Fuse replacement",charge:350,contact:"9824405566",image:"https://randomuser.me/api/portraits/women/24.jpg"},
+{name:"Suresh Rana",skills:"Inspection",charge:500,contact:"9835506677",image:"https://randomuser.me/api/portraits/men/54.jpg"}
+],
+"Teacher":[
+{name:"Amit Sharma",skills:"Maths",charge:700,contact:"9876541001",image:"https://randomuser.me/api/portraits/men/11.jpg"},
+{name:"Rekha Karki",skills:"English",charge:650,contact:"9876541002",image:"https://randomuser.me/api/portraits/women/21.jpg"},
+{name:"Sanjay Thapa",skills:"Computer",charge:800,contact:"9876541003",image:"https://randomuser.me/api/portraits/men/31.jpg"},
+{name:"Anita Gurung",skills:"Biology",charge:750,contact:"9876541004",image:"https://randomuser.me/api/portraits/women/41.jpg"},
+{name:"Rohit Singh",skills:"Programming",charge:700,contact:"9876541005",image:"https://randomuser.me/api/portraits/men/51.jpg"}
+],
+"AC Mechanic":[
+{name:"Deepak AC",skills:"AC installation",charge:900,contact:"9811111111",image:"https://randomuser.me/api/portraits/men/61.jpg"},
+{name:"Ravi AC",skills:"Gas refill",charge:850,contact:"9822222222",image:"https://randomuser.me/api/portraits/men/62.jpg"},
+{name:"Sanjay AC",skills:"Cooling issue",charge:800,contact:"9833333333",image:"https://randomuser.me/api/portraits/men/63.jpg"},
+{name:"Kunal AC",skills:"Maintenance",charge:750,contact:"9844444444",image:"https://randomuser.me/api/portraits/men/64.jpg"},
+{name:"Aman AC",skills:"Compressor repair",charge:1000,contact:"9855555555",image:"https://randomuser.me/api/portraits/men/65.jpg"}
+],
+"Fan Mechanic":[
+{name:"Raju Fan",skills:"Fan repair",charge:300,contact:"9816666666",image:"https://randomuser.me/api/portraits/men/66.jpg"},
+{name:"Mohan Fan",skills:"Bearing change",charge:350,contact:"9827777777",image:"https://randomuser.me/api/portraits/men/67.jpg"},
+{name:"Suresh Fan",skills:"Motor repair",charge:400,contact:"9838888888",image:"https://randomuser.me/api/portraits/men/68.jpg"},
+{name:"Nabin Fan",skills:"Wiring",charge:300,contact:"9849999999",image:"https://randomuser.me/api/portraits/men/69.jpg"},
+{name:"Kiran Fan",skills:"Ceiling fan install",charge:450,contact:"9851010101",image:"https://randomuser.me/api/portraits/men/70.jpg"}
+],
+"Others":[
+{name:"Bikash Painter",skills:"Wall painting",charge:1200,contact:"9810101010",image:"https://randomuser.me/api/portraits/men/71.jpg"},
+{name:"Rina Cleaner",skills:"House cleaning",charge:600,contact:"9820202020",image:"https://randomuser.me/api/portraits/women/72.jpg"},
+{name:"Suman Carpenter",skills:"Furniture repair",charge:900,contact:"9830303030",image:"https://randomuser.me/api/portraits/men/73.jpg"},
+{name:"Anil Welder",skills:"Metal welding",charge:1100,contact:"9840404040",image:"https://randomuser.me/api/portraits/men/74.jpg"},
+{name:"Pooja Tailor",skills:"Clothing alteration",charge:500,contact:"9850505050",image:"https://randomuser.me/api/portraits/women/75.jpg"}
+]
+};
+
+function openCategory(category){
+  document.getElementById("tech-modal").style.display="flex";
+  document.getElementById("modal-category").innerText=category+" Technicians";
+  const list=document.getElementById("modal-tech-list");
+  list.innerHTML="";
+  document.getElementById("tech-detail").innerHTML="";
+  document.getElementById("booking-form").style.display="none";
+  technicians[category].forEach((t,i)=>{
+    list.innerHTML+=`
+      <div class="tech-card" onclick="showTech('${category}',${i})">
+        <img src="${t.image}">
+        <h3>${t.name}</h3>
+        <p>${t.skills}</p>
+      </div>`;
+  });
+  list.scrollIntoView({behavior:"smooth"});
+}
+
+function showTech(cat,i){
+  const t=technicians[cat][i];
+  document.getElementById("tech-detail").innerHTML=`
+    <img src="${t.image}">
+    <h3>${t.name}</h3>
+    <p><b>Skills:</b> ${t.skills}</p>
+    <p><b>Charge:</b> ₹${t.charge}</p>
+    <p><b>Contact:</b> ${t.contact}</p>
+    <a class="book-btn" onclick="openForm()">Book Now</a>`;
+  document.getElementById("tech-detail").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function openForm(){
+  const form=document.getElementById("booking-form");
+  form.style.display="block";
+  form.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function submitBooking(){
+  alert("Your booking is confirmed. Please be patient, technician will arrive shortly.");
+  closeModal();
+}
+
+function closeModal(){
+  document.getElementById("tech-modal").style.display="none";
+}
+let slogans = document.querySelectorAll('.slogan-text');
+let index = 0;
+
+setInterval(() => {
+    slogans[index].classList.remove('active');
+    index = (index + 1) % slogans.length;
+    slogans[index].classList.add('active');
+}, 1500);
+
+function joinUs() {
+    alert("Join Us button clicked! You can redirect to your registration page here.");
+    // Example: window.location.href = "registration.html";
+}
+
+
+</script>
+
+</body>
+</html>

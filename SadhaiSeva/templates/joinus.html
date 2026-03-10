@@ -1,0 +1,92 @@
+<!-- Join Us Form -->
+<section id="join-us" style="
+    padding: 60px 20px; 
+    background: linear-gradient(135deg, #9b59b6 0%, #6c5ce7 50%, #00c6ff 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+">
+  <div style="
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+  "></div>
+
+  <h2 style="text-align: center; color: #fff; font-size: 2.5em; font-weight: 700; margin-bottom: 30px; text-shadow: 2px 2px 8px rgba(0,0,0,0.2);">
+    Join Our Team
+  </h2>
+
+  <!-- ✅ Updated form action & method -->
+  <form id="joinForm" action="/submit" method="POST"
+      style="position: relative; max-width: 600px; margin: 0 auto; background: white; padding: 30px 25px; border-radius: 15px; 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15); transition: transform 0.3s, box-shadow 0.3s;">
+    
+    <label for="fullName" style="font-weight: 600; color: #573da3;">Full Name:</label>
+    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required
+           style="width: 100%; padding: 12px; margin: 8px 0 16px 0; border-radius: 8px; border: 1px solid #ccc;
+                  transition: all 0.3s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
+    
+    <label for="email" style="font-weight: 600; color: #573da3;">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required
+           style="width: 100%; padding: 12px; margin: 8px 0 16px 0; border-radius: 8px; border: 1px solid #ccc;
+                  transition: all 0.3s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
+    
+    <label for="contact" style="font-weight: 600; color: #573da3;">Contact Number:</label>
+    <input type="tel" id="contact" name="contact" placeholder="Enter your phone number" required
+           style="width: 100%; padding: 12px; margin: 8px 0 16px 0; border-radius: 8px; border: 1px solid #ccc;
+                  transition: all 0.3s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
+    
+    <label for="position" style="font-weight: 600; color: #573da3;">Position Interested:</label>
+    <select id="position" name="position" required
+            style="width: 100%; padding: 12px; margin: 8px 0 16px 0; border-radius: 8px; border: 1px solid #ccc;
+                   transition: all 0.3s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
+      <option value="">Select a position</option>
+      <option value="technician">Technician</option>
+      <option value="plumber">Plumber</option>
+      <option value="electrician">Electrician</option>
+      <option value="teacher">Teacher</option>
+      <option value="other">Other</option>
+    </select>
+    
+    <label for="experience" style="font-weight: 600; color: #573da3;">Experience (years):</label>
+    <input type="number" id="experience" name="experience" placeholder="Enter your experience in years" min="0"
+           style="width: 100%; padding: 12px; margin: 8px 0 16px 0; border-radius: 8px; border: 1px solid #ccc;
+                  transition: all 0.3s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
+    
+    <label for="message" style="font-weight: 600; color: #573da3;">Additional Message:</label>
+    <textarea id="message" name="message" placeholder="Write something about yourself..." rows="4"
+              style="width: 100%; padding: 12px; margin: 8px 0 20px 0; border-radius: 8px; border: 1px solid #ccc;
+                     transition: all 0.3s; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);"></textarea>
+    
+    <button type="submit" 
+            style="width: 100%; padding: 14px; background: linear-gradient(90deg, #573da3, #9b59b6); 
+                   color: white; font-size: 18px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer;
+                   transition: all 0.3s, box-shadow 0.3s;">
+      Join Us
+    </button>
+  </form>
+</section>
+
+<style>
+  #joinForm input:focus, 
+  #joinForm select:focus, 
+  #joinForm textarea:focus {
+    border-color: #9b59b6;
+    box-shadow: 0 0 8px rgba(155, 89, 182, 0.3);
+    outline: none;
+  }
+
+  #joinForm button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
+  }
+
+  #joinForm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+</style>
